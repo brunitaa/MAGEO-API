@@ -17,7 +17,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://mageo.onrender.com/",
+    origin: "https://mageo.onrender.com",
     credentials: true,
   })
 );
