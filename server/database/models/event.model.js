@@ -12,7 +12,12 @@ const scheduleSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    time: {
+    start_time: {
+      type: Date,
+      required: true,
+      trim: true,
+    },
+    end_time: {
       type: Date,
       required: true,
       trim: true,
