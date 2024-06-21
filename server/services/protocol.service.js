@@ -11,7 +11,10 @@ const getAllProtocols = async () => {
 
 const getAllMyProtocols = async (userId) => {
   try {
-    const allMyProtocols = await Protocol.find({ user_id: userId });
+    const allMyProtocols = await Protocol.find({ user_id: userId }).populate({
+      path:"event_id",
+    select:"event_name"}
+    );
     return allMyProtocols;
   } catch (error) {
     throw new Error(error.message);
