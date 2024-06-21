@@ -12,8 +12,9 @@ const getAllLogistics = async () => {
 
 const getAllMyLogistics = async (userId) => {
   try {
-    const allMyLogistics = await Logistic.find({ user_id: userId }).populate(
-      "event_id"
+    const allMyLogistics = await Logistic.find({ user_id: userId }).populate({
+      path:"event_id",
+    select:"event_name"}
     );
     return allMyLogistics;
   } catch (error) {
