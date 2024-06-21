@@ -3,7 +3,10 @@ import Logistic from "../database/models/logistic.model.js";
 
 const getAllLogistics = async () => {
   try {
-    const allLogistics = await Logistic.find();
+    const allLogistics = await Logistic.find().populate({
+      path: "event_id",
+      select: "event_id event_name",
+    });
     return allLogistics;
   } catch (error) {
     throw new Error(error.message);
@@ -13,9 +16,9 @@ const getAllLogistics = async () => {
 const getAllMyLogistics = async (userId) => {
   try {
     const allMyLogistics = await Logistic.find({ user_id: userId }).populate({
-      path:"event_id",
-    select:"event_name"}
-    );
+      path: "event_id",
+      select: "event_id event_name",
+    });
     return allMyLogistics;
   } catch (error) {
     throw new Error(error.message);
