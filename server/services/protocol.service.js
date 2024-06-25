@@ -28,7 +28,7 @@ const getOneProtocol = async (protocolId) => {
   try {
     const protocolFound = await Protocol.findById(protocolId);
     if (!protocolFound) {
-      throw new Error("Protocol not found");
+      throw new Error("Protocol not found!");
     }
     return protocolFound;
   } catch (error) {
