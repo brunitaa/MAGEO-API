@@ -8,7 +8,7 @@ const itemsSchema = new mongoose.Schema(
       trim: true,
     },
     quantity: {
-      type: String,
+      type: Number,
       required: true,
       trim: true,
     },
@@ -18,7 +18,7 @@ const itemsSchema = new mongoose.Schema(
       trm: true,
     },
     unit_price: {
-      type: String,
+      type: Number,
       trim: true,
     },
     observations: {
