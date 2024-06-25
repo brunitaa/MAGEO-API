@@ -1,4 +1,5 @@
 import User from "../database/models/user.model.js";
+import bcrypt from "bcryptjs";
 
 const getUserInformation = async (userId) => {
   try {
@@ -41,10 +42,10 @@ const updateMyUserInformation = async (userId, userData) => {
     }
 
     if (userData.password) {
-      throw new Error(
-        "Sorry, you cannot update your password for security reasons from this section."
-      );
+      const passwordHash = await bcrypt.hash(userData.password, 10);
+      userData.password = passwordHash;
     }
+
     const updatedUser = await User.findOneAndUpdate({ _id: userId }, userData, {
       new: true,
     }).select("-password");
