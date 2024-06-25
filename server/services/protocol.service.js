@@ -2,7 +2,10 @@ import Protocol from "../database/models/protocol.model.js";
 
 const getAllProtocols = async () => {
   try {
-    const allProtocols = await Protocol.find();
+    const allProtocols = await Protocol.find().populate({
+      path: "event_id",
+      select: "event_id event_name",
+    });
     return allProtocols;
   } catch (error) {
     throw new Error(error.message);
@@ -11,7 +14,10 @@ const getAllProtocols = async () => {
 
 const getAllMyProtocols = async (userId) => {
   try {
-    const allMyProtocols = await Protocol.find({ user_id: userId });
+    const allMyProtocols = await Protocol.find({ user_id: userId }).populate({
+      path: "event_id",
+      select: "event_id event_name",
+    });
     return allMyProtocols;
   } catch (error) {
     throw new Error(error.message);
